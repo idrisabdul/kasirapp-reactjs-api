@@ -26,27 +26,51 @@ export default class TotalBayar extends Component {
         }, 0);
 
         return (
-            <div className="fixed-bottom">
-                <Row>
-                    <Col lg={{ span: 3, offset: 9 }}>
-                        <h6>
-                            Total Harga : {" "}
-                            <strong className="float-right mr-2">
-                                Rp. {numberWithCommas(totalBayar)}
-                            </strong>
-                        </h6>
-                        <Button
-                            variant="primary"
-                            block="true"
-                            className="mb-2 mt-2 mr-2"
-                            size="lg"
-                            onClick={() => this.submitTotalBayar(totalBayar)}
-                        >
-                            <FontAwesomeIcon icon={faShoppingCart} /> <strong>BAYAR</strong>
-                        </Button>
-                    </Col>
-                </Row>
-            </div>
+            <>
+                {/* Web */}
+                <div className="fixed-bottom d-none d-md-block">
+                    <Row>
+                        <Col lg={{ span: 3, offset: 9 }}>
+                            <h6>
+                                Total Harga : {" "}
+                                <strong className="float-right mr-2">
+                                    Rp. {numberWithCommas(totalBayar)}
+                                </strong>
+                            </h6>
+                            <Button
+                                variant="primary"
+                                className="mb-2 mt-1 mr-2"
+                                size="lg"
+                                onClick={() => this.submitTotalBayar(totalBayar)}
+                            >
+                                <FontAwesomeIcon icon={faShoppingCart} /> <strong>BAYAR</strong>
+                            </Button>
+                        </Col>
+                    </Row>
+                </div>
+
+                {/* Mobile */}
+                <div className="d-sm-block d-md-none">
+                    <Row>
+                        <Col lg={{ span: 3, offset: 9 }}>
+                            <h6>
+                                Total Harga : {" "}
+                                <strong className="float-right mr-2">
+                                    Rp. {numberWithCommas(totalBayar)}
+                                </strong>
+                            </h6>
+                            <Button
+                                variant="primary"
+                                className="mb-2 mt-1 mr-2"
+                                size="lg"
+                                onClick={() => this.submitTotalBayar(totalBayar)}
+                            >
+                                <FontAwesomeIcon icon={faShoppingCart} /> <strong>BAYAR</strong>
+                            </Button>
+                        </Col>
+                    </Row>
+                </div>
+            </>
         );
     }
 }

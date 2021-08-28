@@ -26,6 +26,23 @@ export default class Home extends Component {
                 console.log(error);
             });
 
+        this.getListKeranjangs();
+    }
+
+    // componentDidUpdate(prevState) {
+    //     if (this.state.keranjangs !== prevState.keranjangs) {
+    //         axios.get(API_URL + "keranjangs")
+    //             .then(res => {
+    //                 const keranjangs = res.data;
+    //                 this.setState({ keranjangs });
+    //             })
+    //             .catch(error => {
+    //                 console.log(error);
+    //             });
+    //     }
+    // }
+
+    getListKeranjangs = () => {
         axios.get(API_URL + "keranjangs")
             .then(res => {
                 const keranjangs = res.data;
@@ -34,22 +51,6 @@ export default class Home extends Component {
             .catch(error => {
                 console.log(error);
             });
-
-
-
-    }
-
-    componentDidUpdate(prevState) {
-        if (this.state.keranjangs !== prevState.keranjangs) {
-            axios.get(API_URL + "keranjangs")
-                .then(res => {
-                    const keranjangs = res.data;
-                    this.setState({ keranjangs });
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        }
     }
 
     changeCategory = (value) => {
@@ -72,6 +73,7 @@ export default class Home extends Component {
 
         axios.get(API_URL + "keranjangs?product.id=" + value.id)
             .then(res => {
+                this.getListKeranjangs();
                 if (res.data.length === 0) {
                     const keranjang = {
                         jumlah: 1,
@@ -132,7 +134,7 @@ export default class Home extends Component {
                         <Col>
                             <h4><strong>Daftar Produk</strong> </h4>
                             <hr />
-                            <Row>
+                            <Row className="overflow-auto menu">
                                 {menus && menus.map((menu) => (
                                     <Menus
                                         key={menu.id}
@@ -142,7 +144,7 @@ export default class Home extends Component {
                                 ))}
                             </Row>
                         </Col>
-                        <Hasil keranjangs={keranjangs} {...this.props} />
+                        <Hasil keranjangs={keranjangs} {...this.props} getListKeranjangs={this.getListKeranjangs} />
                     </Row>
                 </Container>
             </div>
